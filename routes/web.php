@@ -4,8 +4,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\home;
-use App\Http\Controllers\Pasien;
 use App\Http\Controllers\Pemeriksaan;
+use App\Http\Controllers\PasienController;
 
 // Route::get('/', function () {
 //     return view('auth/login');
@@ -21,9 +21,10 @@ Route::middleware(['auth', 'verified']) -> group(function (){
         Route::get('/', 'index')->name('dashboard');
     });
 
-    Route::controller(Pasien::class)->group(function () {
+    Route::controller(PasienController::class)->group(function () {
         Route::get('/pasien', 'index')->name('pasien');
         Route::get('/daftar/pasien', 'daftarpasien')->name('daftar.pasien');
+        // Route::post('/pasien/baru', 'pasienbaru')->name('pasien.baru');
     });
 
     Route::controller(Pemeriksaan::class)->group(function () {
