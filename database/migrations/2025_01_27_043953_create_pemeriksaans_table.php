@@ -12,21 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pemeriksaans', function (Blueprint $table) {
-            $table->id();
-            $table->string('no_rekam_medis');
-            $table->string('dokter');
-            $table->decimal('berat_badan', 5, 2); // dalam kg
-            $table->string('tekanan_darah'); // format sistolik/diastolik
-            $table->decimal('suhu_tubuh', 5, 2); // dalam °C
-            $table->text('keluhan_pasien')->nullable();
-            $table->string('nama_pasien');
-            $table->date('tanggal_kunjungan');
-            $table->decimal('tinggi_badan', 5, 2); // dalam cm
-            $table->integer('detak_jantung'); // dalam bpm
-            $table->text('riwayat_penyakit')->nullable();
-            $table->text('diagnosis')->nullable();
-            $table->timestamps();
-        });
+        $table->id();
+        $table->foreignId('pasien_id')->constrained('pasiens')->onDelete('cascade');
+        $table->string('dokter');
+        $table->decimal('berat_badan', 5, 2);
+        $table->string('tekanan_darah');
+        $table->decimal('suhu_tubuh', 5, 2);
+        $table->text('keluhan_pasien')->nullable();
+        $table->date('tanggal_kunjungan');
+        $table->decimal('tinggi_badan', 5, 2);
+        $table->integer('detak_jantung');
+        $table->text('riwayat_penyakit')->nullable();
+        $table->text('diagnosis')->nullable();
+        $table->timestamps();
+});
     }
 
     /**

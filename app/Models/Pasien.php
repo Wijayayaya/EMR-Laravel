@@ -17,4 +17,9 @@ class Pasien extends Model
         'no_telpon',
         'alamat',
     ];
+
+    public function pemeriksaans()
+    {
+        return $this->hasMany(Pemeriksaan::class);
+    }
 }
