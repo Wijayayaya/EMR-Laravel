@@ -1,14 +1,13 @@
-
 @extends('layouts.layout')
 
-@section('title', 'Rekam Medis')
+@section('title', 'Edit Rekam Medis')
 
 @section('content')
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0">Form Rekam Medis Baru</h5>
+                <h5 class="card-title mb-0">Edit Rekam Medis</h5>
             </div>
             <div class="card-body">
                 @if ($errors->any())
@@ -26,16 +25,17 @@
                     </div>
                 @endif
 
-                <form action="{{ route('rekammedis.store') }}" method="POST">
+                <form action="{{ route('rekammedis.update', $pemeriksaan->id) }}" method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Pasien</label>
                                 <select name="pasien_id" class="form-select" required>
-                                    <option value="">Pilih Pasien</option>
                                     @foreach($patients as $patient)
-                                        <option value="{{ $patient->id }}">
+                                        <option value="{{ $patient->id }}" 
+                                            {{ $patient->id == $pemeriksaan->pasien_id ? 'selected' : '' }}>
                                             {{ $patient->no_rekam_medis }} - {{ $patient->nama }}
                                         </option>
                                     @endforeach
@@ -44,59 +44,66 @@
 
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Dokter</label>
-                                <input type="text" class="form-control" name="dokter" required>
+                                <input type="text" class="form-control" name="dokter" 
+                                    value="{{ $pemeriksaan->dokter }}" required>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Tanggal Kunjungan</label>
-                                <input type="date" class="form-control" name="tanggal_kunjungan" required>
+                                <input type="date" class="form-control" name="tanggal_kunjungan" 
+                                    value="{{ \Carbon\Carbon::parse($pemeriksaan->tanggal_kunjungan)->format('d/m/Y') }}" required>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Berat Badan (kg)</label>
-                                <input type="number" step="0.1" class="form-control" name="berat_badan" required>
+                                <input type="number" step="0.1" class="form-control" name="berat_badan" 
+                                    value="{{ $pemeriksaan->berat_badan }}" required>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Tinggi Badan (cm)</label>
-                                <input type="number" step="0.1" class="form-control" name="tinggi_badan" required>
+                                <input type="number" step="0.1" class="form-control" name="tinggi_badan" 
+                                    value="{{ $pemeriksaan->tinggi_badan }}" required>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Tekanan Darah</label>
-                                <input type="text" class="form-control" name="tekanan_darah" placeholder="Contoh: 120/80" required>
+                                <input type="text" class="form-control" name="tekanan_darah" 
+                                    value="{{ $pemeriksaan->tekanan_darah }}" required>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Suhu Tubuh (°C)</label>
-                                <input type="number" step="0.1" class="form-control" name="suhu_tubuh" required>
+                                <input type="number" step="0.1" class="form-control" name="suhu_tubuh" 
+                                    value="{{ $pemeriksaan->suhu_tubuh }}" required>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Detak Jantung (bpm)</label>
-                                <input type="number" class="form-control" name="detak_jantung" required>
+                                <input type="number" class="form-control" name="detak_jantung" 
+                                    value="{{ $pemeriksaan->detak_jantung }}" required>
                             </div>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label fw-bold">Keluhan Pasien</label>
-                        <textarea class="form-control" name="keluhan_pasien" rows="3"></textarea>
+                        <textarea class="form-control" name="keluhan_pasien" rows="3">{{ $pemeriksaan->keluhan_pasien }}</textarea>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label fw-bold">Riwayat Penyakit</label>
-                        <textarea class="form-control" name="riwayat_penyakit" rows="3"></textarea>
+                        <textarea class="form-control" name="riwayat_penyakit" rows="3">{{ $pemeriksaan->riwayat_penyakit }}</textarea>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label fw-bold">Diagnosis</label>
-                        <textarea class="form-control" name="diagnosis" rows="3"></textarea>
+                        <textarea class="form-control" name="diagnosis" rows="3">{{ $pemeriksaan->diagnosis }}</textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100">Simpan Rekam Medis</button>
+                    <button type="submit" class="btn btn-primary w-100">Update Rekam Medis</button>
                 </form>
             </div>
         </div>
