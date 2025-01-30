@@ -71,10 +71,6 @@
             </a>
 					</li>
 				</ul>
-				<!-- <form action="{{ route('dashboard') }}" class="mb-3">
-        			@csrf
-					<input type="submit" value="Back" class="ms-3 btn btn-danger">
-				</form>	 -->
 			</div>
 		</nav>
 

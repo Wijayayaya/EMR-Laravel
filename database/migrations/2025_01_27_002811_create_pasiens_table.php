@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pasiens', function (Blueprint $table) {
             $table->id();
-            $table->string('no_rekam_medis')->unique(); // Kolom wajib tanpa default
+            $table->string('no_rekam_medis')->unique();
             $table->string('nama');
             $table->date('tanggal_lahir');
             $table->string('jenis_kelamin');
