@@ -37,6 +37,9 @@
                                 <td>{{ $pasien->jenis_kelamin }}</td>
                                 <td>
                                     <div class="d-flex gap-2">
+                                        <a href="{{ route('pasien.show', $pasien->id) }}" class="btn btn-sm btn-info">
+                                            Detail
+                                         </a>
                                         <a href="{{ route('edit.pasien', $pasien->id) }}" class="btn btn-sm btn-warning">
                                             Edit
                                         </a>

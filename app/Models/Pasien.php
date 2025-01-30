@@ -38,4 +38,9 @@ class Pasien extends Model
             $pasien->no_rekam_medis = $prefix . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
         });
     }
+
+    public function pemeriksaans()
+    {
+        return $this->hasMany(Pemeriksaan::class);
+    }
 }

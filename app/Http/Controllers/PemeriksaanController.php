@@ -82,4 +82,10 @@ class PemeriksaanController extends Controller
         return redirect()->route('daftar.rekammedis')
             ->with('success', 'Rekam medis berhasil dihapus');
     }
+
+    public function show(Pemeriksaan $pemeriksaan)
+    {
+        $pemeriksaan->load('pasien');
+        return view('medis.detailrekammedis', compact('pemeriksaan'));
+    }
 }

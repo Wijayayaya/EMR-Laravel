@@ -67,4 +67,10 @@ class PasienController extends Controller
         return redirect()->route('daftar.pasien')
             ->with('success', 'Pasien berhasil dihapus');
     }
+
+    public function show(Pasien $pasien)
+    {
+        $pasien->load('pemeriksaans');
+        return view('medis.detailpasien', compact('pasien'));
+    }
 }

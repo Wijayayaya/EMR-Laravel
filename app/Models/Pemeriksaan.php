@@ -26,5 +26,5 @@ class Pemeriksaan extends Model
     public function pasien()
     {
         return $this->belongsTo(Pasien::class);
-    }
+    }   
 }

@@ -35,22 +35,16 @@ use App\Http\Controllers\PemeriksaanController;
 // });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    // Dashboard
     Route::controller(home::class)->group(function () {
-//         // Route::get('/', 'index')->name('login');
         Route::get('/', 'index')->name('dashboard');
     });
 
-    // Pasien Routes
+
     Route::controller(PasienController::class)->group(function () {
-        // Tambah Pasien
         Route::get('/pasien', 'create')->name('pasien');
-        
-        // Daftar Pasien
         Route::get('/daftarpasien', 'index')->name('daftar.pasien');
-        
-        // Edit Pasien
         Route::get('/editpasien/{pasien}', 'edit')->name('edit.pasien');
+        Route::get('/pasien/{pasien}', 'show')->name('pasien.show');
         
         // CRUD Operations
         Route::post('/pasien', 'store')->name('pasien.store');
@@ -58,16 +52,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/pasien/{pasien}', 'destroy')->name('pasien.destroy');
     });
 
-    // Rekam Medis Routes
     Route::controller(PemeriksaanController::class)->group(function () {
-        // Tambah Rekam Medis
         Route::get('/rekammedis', 'create')->name('rekam.medis');
-        
-        // Daftar Rekam Medis
         Route::get('/daftarrekammedis', 'index')->name('daftar.rekammedis');
-        
-        // Edit Rekam Medis
         Route::get('/editrekammedis/{pemeriksaan}', 'edit')->name('edit.rekammedis');
+         Route::get('/rekammedis/{pemeriksaan}', 'show')->name('rekammedis.show');
         
         // CRUD Operations
         Route::post('/rekammedis', 'store')->name('rekammedis.store');

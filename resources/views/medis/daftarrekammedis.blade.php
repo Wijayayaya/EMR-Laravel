@@ -38,6 +38,9 @@
                                 <td>{{ $pemeriksaan->dokter }}</td>
                                 <td>
                                     <div class="d-flex gap-2">
+                                        <a href="{{ route('rekammedis.show', $pemeriksaan->id) }}" class="btn btn-sm btn-info">
+                                            Detail
+                                        </a>
                                         <a href="{{ route('edit.rekammedis', $pemeriksaan->id) }}" class="btn btn-sm btn-warning">
                                             Edit
                                         </a>
